@@ -11,8 +11,8 @@ var totalCost = 0;
 
 function storeEmployee(){
   var employeeInfo = new Employee ($('#firstName').val(),$('#lastName').val(),$('#idNumber').val(),$('#jobTitle').val(),$('#annualSalary').val());
-  $("table").append("<tr><td>" + employeeInfo.first + '</td><td>' + employeeInfo.last + '</td><td>'+ employeeInfo.id + '</td><td>'+ employeeInfo.title + '</td><td>' + employeeInfo.salary + "</td><td><button class='remove'>Remove</button></td></tr>");
-  totalCost = totalCost + parseInt(employeeInfo.salary);
+  $("table tbody").append("<tr><td>" + employeeInfo.first + '</td><td>' + employeeInfo.last + '</td><td>'+ employeeInfo.id + '</td><td>'+ employeeInfo.title + '</td><td>' + employeeInfo.salary + "</td><td><button class='remove'>Remove</button></td></tr>");
+  totalCost = totalCost + Math.round((parseInt(employeeInfo.salary))/12);
   $("#totalCost").text(totalCost);
   $("input").val("");
   console.log(employeeInfo);
@@ -21,7 +21,7 @@ function storeEmployee(){
 function removeRow() {
   var rowRemoved = $(this).closest ('tr');
   console.log(rowRemoved);
-  var sal = rowRemoved.children(':nth-child(5)').text();
+  var sal = Math.round((rowRemoved.children(':nth-child(5)').text())/12);
   console.log(sal);
   totalCost = totalCost - sal;
   $('#totalCost').text(totalCost);
@@ -35,6 +35,5 @@ function Employee (first, last, id, title, salary) {
   this.last = last;
   this.id = id;
   this.title = title;
-  this.salary = Math.round(salary/12);
-
+  this.salary = salary;
 }
