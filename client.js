@@ -35,6 +35,6 @@ function Employee (first, last, id, title, salary) {
   this.last = last;
   this.id = id;
   this.title = title;
-  this.salary = salary/12;
+  this.salary = Math.round(salary/12);
 
 }
