@@ -33,19 +33,20 @@ function storeEmployee(){
 }
 
 function removeRow() {
-  //updateMonthlyCost();
+  var rowRemoved = $(this).closest ('tr');
+  console.log(rowRemoved);
+  var sal = rowRemoved.children(':nth-child(5)').text();
+  console.log(sal);
+  totalCost = totalCost - sal;
+  $('#totalCost').text(totalCost);
   $(this).closest ('tr').remove ();
   console.log('removed');
   }
 
-function updateMonthlyCost(){
-  var row = $(this).closest('tr');
+//function updateMonthlyCost(){
+  //var row = $(this).closest('tr');
   //console.log(row);
-  //$(this).find('td:last-child').text()
-  console.log(row.find('td:first-child').text());
-  totalCost = totalCost - 1;
-  $('#totalCost').text(totalCost);
-}
+
 
 
 function Employee (first, last, id, title, salary) {
